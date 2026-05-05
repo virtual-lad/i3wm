@@ -30,7 +30,7 @@ set $bar_setting_mode                dock
 set $bar_setting_font                pango:Source Sans Pro, Semibold 11
 set $bar_setting_separator           " - "
 set $bar_setting_statusCommand       i3status -c ~/.config/i3/i3status.conf
-set $bar_setting_trayoutput          full
+set $bar_setting_trayoutput          primary
 
 set $bar_color_background            #3B4252
 set $bar_color_foreground            #D8DEE9
@@ -229,3 +229,9 @@ exec_always --no-startup-id xinput set-prop "DLL07D0:01 044E:120B" "libinput Nat
 
 # Flamshot ScreenShot
 bindsym Print exec flameshot gui
+
+# Copyq CLipboard
+exec_always --no-startup-id copyq
+bindsym $mod+v exec --no-startup-id copyq menu
+
+
