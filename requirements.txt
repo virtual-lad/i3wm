@@ -1,0 +1,33 @@
+# Window Manager & Core
+i3-wm
+i3status
+
+# Terminal & Shell
+alacritty
+zsh
+
+# App Launchers & Compositors
+rofi
+picom
+
+# Wallpaper & Visuals
+feh
+imagemagick
+
+# Lock Screen & Screenshots
+i3lock
+scrot
+flameshot
+
+# System Utilities
+brightnessctl
+playerctl
+alsa-utils
+xinput
+x11-xserver-utils
+
+# Fonts
+fonts-source-sans-pro
+
+# Recommended Clipboard
+copyq
