@@ -1,0 +1,231 @@
+# SkyyySi's Nordic i3 config file
+#
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+
+### Variables for settings (This makes changing them WAY easyer!) ###
+set $mod                             Mod4
+set $smod                            Shift
+set $wm_setting_font                 pango:Source Sans Pro, Semibold 11
+set $wm_setting_gap_width            1
+set $wm_setting_gap_heigth           1
+set $wm_setting_border_size          2
+set $wm_setting_key_left             Left
+set $wm_setting_key_down             Down
+set $wm_setting_key_up               Up
+set $wm_setting_key_right            Right
+
+set $wm_setting_app_terminal         alacritty
+set $wm_setting_app_browser          flatpak run org.mozilla.firefox
+set $wm_setting_app_launcher         rofi -show drun
+set $wm_setting_app_compositor       picom
+
+set $wm_color_border_active_bg       #81A1C1
+set $wm_color_border_active_fg       #3B4252
+set $wm_color_border_inactive_bg     #3B4252
+set $wm_color_border_inactive_fg     #D8DEE9
+set $wm_color_background             #2E3440
+
+set $bar_setting_position            bottom
+set $bar_setting_mode                dock
+set $bar_setting_font                pango:Source Sans Pro, Semibold 11
+set $bar_setting_separator           " - "
+set $bar_setting_statusCommand       i3status -c ~/.config/i3/i3status.conf
+set $bar_setting_trayoutput          full
+
+set $bar_color_background            #3B4252
+set $bar_color_foreground            #D8DEE9
+set $bar_color_statusline            #D8DEE9
+set $bar_color_separator             #D8DEE9
+
+set $bar_color_workspace_focused_bg  #A3BE8C
+set $bar_color_workspace_focused_fg  #2E3440
+set $bar_color_workspace_active_bg   #EBCB8B
+set $bar_color_workspace_active_fg   #2E3440
+set $bar_color_workspace_inactive_bg #BF616A
+set $bar_color_workspace_inactive_fg #2E3440
+set $bar_color_workspace_urgent_bg   #D08770
+set $bar_color_workspace_urgent_fg   #2E3440
+
+### Applications ###
+# Start a terminal emulator
+bindsym $mod+Return exec $wm_setting_app_terminal
+
+# Start a web browser
+bindsym $mod+$smod+Return exec $wm_setting_app_browser
+
+# Start a program launcher
+bindsym $mod+d exec $wm_setting_app_launcher
+
+# Run a window compositor (for effects like transparency or full VSync)
+exec_always --no-startup-id $wm_setting_app_compositor
+
+### Workspaces ###
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1  "    I    "
+set $ws2  "    II    "
+set $ws3  "    III    "
+set $ws4  "    IV    "
+set $ws5  "    V    "
+set $ws6  "    VI    "
+set $ws7  "    VII    "
+set $ws8  "    VIII    "
+set $ws9  "    IX    "
+set $ws10 "    X    "
+
+# Switch to workspace n
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace n
+bindsym $mod+$smod+1 move container to workspace $ws1
+bindsym $mod+$smod+2 move container to workspace $ws2
+bindsym $mod+$smod+3 move container to workspace $ws3
+bindsym $mod+$smod+4 move container to workspace $ws4
+bindsym $mod+$smod+5 move container to workspace $ws5
+bindsym $mod+$smod+6 move container to workspace $ws6
+bindsym $mod+$smod+7 move container to workspace $ws7
+bindsym $mod+$smod+8 move container to workspace $ws8
+bindsym $mod+$smod+9 move container to workspace $ws9
+bindsym $mod+$smod+0 move container to workspace $ws10
+
+### Window sizes and positions ###
+# Cange focus
+bindsym $mod+$wm_setting_key_left        focus left
+bindsym $mod+$wm_setting_key_down        focus down
+bindsym $mod+$wm_setting_key_up          focus up
+bindsym $mod+$wm_setting_key_right       focus right
+
+# Move focused window
+bindsym $mod+$smod+$wm_setting_key_left  move left
+bindsym $mod+$smod+$wm_setting_key_down  move down
+bindsym $mod+$smod+$wm_setting_key_up    move up
+bindsym $mod+$smod+$wm_setting_key_right move right
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym $wm_setting_key_left  resize shrink width 10 px or 10 ppt
+        bindsym $wm_setting_key_down  resize grow height 10 px or 10 ppt
+        bindsym $wm_setting_key_up    resize shrink height 10 px or 10 ppt
+        bindsym $wm_setting_key_right resize grow width 10 px or 10 ppt
+
+        # Fixed gap resizing for modern i3
+        bindsym $smod+$wm_setting_key_left  gaps inner current minus 5
+        bindsym $smod+$wm_setting_key_down  gaps inner current plus 5
+        bindsym $smod+$wm_setting_key_up    gaps outer current minus 5
+        bindsym $smod+$wm_setting_key_right gaps outer current plus 5
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+### Colors ###
+# class                 border                       background                   text                         indicator                    child_border
+client.focused          $wm_color_border_active_bg   $wm_color_border_active_bg   $wm_color_border_active_fg   $wm_color_border_active_bg   $wm_color_border_active_bg
+client.focused_inactive $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.unfocused        $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.urgent           $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.placeholder      $wm_color_border_inactive_bg $wm_color_border_inactive_bg $wm_color_border_inactive_fg $wm_color_border_inactive_bg $wm_color_border_inactive_bg
+client.background       $wm_color_background
+
+### i3bar ###
+bar {
+	position         $bar_setting_position
+	mode             $bar_setting_mode
+	font             $bar_setting_font
+	separator_symbol $bar_setting_separator
+	status_command   $bar_setting_statusCommand
+	tray_output      $bar_setting_trayoutput
+
+	colors {
+		background   $bar_color_background
+		statusline   $bar_color_statusline
+		separator    $bar_color_separator
+
+		focused_workspace  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_bg  $bar_color_workspace_focused_fg
+		active_workspace   $bar_color_workspace_active_bg   $bar_color_workspace_active_bg   $bar_color_workspace_active_fg
+		inactive_workspace $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_bg $bar_color_workspace_inactive_fg
+		urgent_workspace   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_bg   $bar_color_workspace_urgent_fg
+	}
+}
+
+### Miscellaneous settings ###
+# Set the font used for titlebars (which are hidden here)
+font $wm_setting_font
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Enter fullscreen mode for the focused window
+bindsym $mod+f fullscreen toggle
+
+# Toggle between tiling and floating
+bindsym $mod+$smod+f floating toggle
+
+# Kill the focused window
+bindsym $mod+$smod+q kill
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+$smod+r restart
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+$smod+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# stacking and tabbing
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+
+# split tabs into vertically and horizontally
+bindsym $mod+e layout toggle split 
+
+# define next tab orientation
+bindsym $mod+h split h
+bindsym $mod+$smod+v split v
+
+exec_always feh --bg-scale ~/.config/i3/wallpaper.png
+
+# Volume control
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+    # Increase volume
+bindsym XF86AudioLowerVolume exec amixer set Master 5%-    # Decrease volume
+bindsym XF86AudioMute exec amixer set Master toggle         # Mute/unmute
+
+# Play/Pause music (optional, if you want to control media player)
+bindsym XF86AudioPlay exec playerctl play-pause
+
+# Increase brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+
+# Decrease brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# Increase brightness
+bindsym XF86MonBrightnessUp exec brightnessctl s +10%
+
+# Decrease brightness
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+# Lock Screen & Suspend
+bindsym $mod+$smod+l exec "~/.config/i3/screen_lock.sh && systemctl suspend"
+
+# i3lock
+bindsym $mod+l exec ~/.config/i3/screen_lock.sh
+
+bindsym $mod+Shift+s exec --no-startup-id scrot -s ~/Pictures/screenshot_%Y-%m-%d-%H%M%S.png
+
+# Touchpad Click and Scrolling
+exec_always --no-startup-id xinput set-prop "DLL07D0:01 044E:120B" "libinput Tapping Enabled" 1
+exec_always --no-startup-id xinput set-prop "DLL07D0:01 044E:120B" "libinput Natural Scrolling Enabled" 1
+
+# Flamshot ScreenShot
+bindsym Print exec flameshot gui
