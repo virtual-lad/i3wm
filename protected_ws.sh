@@ -4,7 +4,7 @@
 WS_NAME="  !"
 #WS_NAME="10"
 # Your hashed passcode
-TARGET_HASH="380930db28d12ba6f443449a6f7836bf2f49127ac6ece83143607f9aec785e2f"
+TARGET_HASH="SET ANY PASSCODE YOU WANT"
 
 # Get user input
 INPUT=$(zenity --password --title="Restricted Access")
