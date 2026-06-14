@@ -84,6 +84,8 @@ ln -sf "$REPO_DIR/wallpaper.png"    "$CONFIG_DIR/wallpaper.png"
 ln -sf "$REPO_DIR/lock_icon.png"    "$CONFIG_DIR/lock_icon.png"
 ln -sf "$REPO_DIR/screen_lock.sh"   "$CONFIG_DIR/screen_lock.sh"
 ln -sf "$REPO_DIR/protected_ws.sh"  "$CONFIG_DIR/protected_ws.sh"
+mkdir -p "$HOME/.config/rofi"
+ln -sf "$REPO_DIR/rofi/style-10.rasi" "$HOME/.config/rofi/style-10.rasi"
 
 chmod +x "$CONFIG_DIR/screen_lock.sh"
 chmod +x "$CONFIG_DIR/protected_ws.sh"
