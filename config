@@ -62,15 +62,15 @@ exec_always --no-startup-id $wm_setting_app_compositor
 ### Workspaces ###
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1  "    I    "
-set $ws2  "    II    "
-set $ws3  "    III    "
-set $ws4  "    IV    "
-set $ws5  "    V    "
-set $ws6  "    VI    "
-set $ws7  "    VII    "
-set $ws8  "    VIII    "
-set $ws9  "    IX    "
+set $ws1  "    1    "
+set $ws2  "    2    "
+set $ws3  "    3    "
+set $ws4  "    4    "
+set $ws5  "    5    "
+set $ws6  "    6    "
+set $ws7  "    7    "
+set $ws8  "    8    "
+set $ws9  "    9    "
 set $ws10 "  !  "
 #set $ws10 "    X    "
 
@@ -105,7 +105,7 @@ bindsym $mod+$smod+0 exec --no-startup-id ~/.config/i3/protected_ws.sh move
 #bindsym $mod+$smod+0 move container to workspace $ws10
 
 ### Window sizes and positions ###
-# Cange focus
+# Change focus
 bindsym $mod+$wm_setting_key_left        focus left
 bindsym $mod+$wm_setting_key_down        focus down
 bindsym $mod+$wm_setting_key_up          focus up
@@ -203,7 +203,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+h split h
 bindsym $mod+$smod+v split v
 
-exec_always feh --bg-scale ~/.config/i3/wallpaper.png
+exec_always feh --bg-fill ~/.config/i3/wallpaper.png
 
 # Volume control
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+    # Increase volume
@@ -225,6 +225,9 @@ bindsym XF86MonBrightnessUp exec brightnessctl s +10%
 # Decrease brightness
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 
+# Delay Between Navigaiton through arrow keys
+exec_always --no-startup-id xset r rate 200 40
+
 # Lock Screen & Suspend
 bindsym $mod+$smod+l exec "~/.config/i3/screen_lock.sh && systemctl suspend"
 
@@ -233,9 +236,12 @@ bindsym $mod+l exec ~/.config/i3/screen_lock.sh
 
 bindsym $mod+Shift+s exec --no-startup-id scrot -s ~/Pictures/screenshot_%Y-%m-%d-%H%M%S.png
 
-# Touchpad Click and Scrolling
+# Touchpad Click and Scrolling (Dell Laptop)
 exec_always --no-startup-id xinput set-prop "DLL07D0:01 044E:120B" "libinput Tapping Enabled" 1
 exec_always --no-startup-id xinput set-prop "DLL07D0:01 044E:120B" "libinput Natural Scrolling Enabled" 1
+# Lenovo Laptop
+exec_always --no-startup-id xinput set-prop "ELAN06FA:00 04F3:327E Touchpad" "libinput Tapping Enabled" 1
+exec_always --no-startup-id xinput set-prop "ELAN06FA:00 04F3:327E Touchpad" "libinput Natural Scrolling Enabled" 1
 
 # Flamshot ScreenShot
 bindsym Print exec flameshot gui
@@ -246,3 +252,4 @@ bindsym $mod+$smod+Print exec peek
 # Copyq CLipboard
 exec_always --no-startup-id copyq
 bindsym $mod+v exec --no-startup-id copyq menu
+
